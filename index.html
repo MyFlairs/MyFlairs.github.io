@@ -137,9 +137,9 @@ window.onload = function(){
 				document.getElementById('ticket').value = param.ticket;
 				PFXD.call('checkTicket', param,e=>{
 					if(e){
-						document.getElementById('result').innerHTML = '<div style="background:#9af;padding:5px;">Execution success</div>';
+						document.getElementById('result').innerHTML = '<div style="background:#9af;padding:5px;">Execution succeed</div>';
 					}else{
-						document.getElementById('result').innerHTML = '<div style="background:#f98;padding:5px;">Execution fail</div>';
+						document.getElementById('result').innerHTML = '<div style="background:#f98;padding:5px;">Execution failed</div>';
 					}
 				});
 			}catch(e){
