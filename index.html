@@ -98,7 +98,7 @@ function check(e){
 	if(!ticket.value || ticket.value=='')return;
 	document.getElementById('button1').innerText = 'Loading';
 	// alert(ticket.value);
-	_909090_ajsgahj_nkjhjk_.call('CheckAccount',{
+	PFXD.call('CheckAccount',{
 			ticket: ticket.value.trim(),
 			content:''
 		},
@@ -110,11 +110,16 @@ function check(e){
 					throw "Wrong ticket";
 				}
 				var data = JSON.parse(r.data.InfoResultPayload.UserData.user.Value);
-				// console.log(r);
-				// console.log(data);
-				document.getElementById('result').innerHTML = '<div style="background:#9af;padding:5px;">ID : '+r.data.InfoResultPayload.AccountInfo.CustomIdInfo.CustomId+'<br/>Flair : '+(data.resources.Premium||0)+'  <i class="fa fa-diamond flair" ></i><br/><button class="button1" onclick="window.location.href=\''+
-					f.secret
-					+'\'">I already closed the game. Give me some flairs!</button><br/><sub>Note: Execution doesn\'t work if you use adblocker</sub></div>';
+
+				if(r.data.InfoResultPayload.AccountInfo && r.data.InfoResultPayload.AccountInfo.CustomIdInfo && r.data.InfoResultPayload.AccountInfo.CustomIdInfo.CustomId){
+					document.getElementById('result').innerHTML = '<div style="background:#9af;padding:5px;">ID : '+r.data.InfoResultPayload.AccountInfo.CustomIdInfo.CustomId+'<br/>Flair : '+(data.resources.Premium||0)+'  <i class="fa fa-diamond flair" ></i><br/><button class="button1" onclick="window.location.href=\''+
+						f.secret
+						+'\'">I already closed the game. Give me some flairs!</button></div>';
+
+					}else{
+					document.getElementById('result').innerHTML = '<div style="background:#9af;padding:5px;">Flair : '+(data.resources.Premium||0)+'  <i class="fa fa-diamond flair" ></i><br/><button class="button1" onclick="window.location.href=\''+f.secret+'\'">I already closed the game. Give me some flairs!</button></div>';
+					}
+
 			}catch(e){
 				document.getElementById('result').innerHTML = '<div style="background:#f98;padding:5px;">'+e+'</div>';
 			}
