@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 <script>
 
-var PFXD_name = "PFXD";
-window[PFXD_name] = {
+var _909090_ajsgahj_nkjhjk__name = "_909090_ajsgahj_nkjhjk_";
+window[_909090_ajsgahj_nkjhjk__name] = {
 	ajax : function (method, url, body=null, headers={},terima=function(){}){
 		body = body || null;
 		headers = headers || null;
@@ -44,10 +44,10 @@ window[PFXD_name] = {
 				try{
 					r = JSON.parse(r.responseText);
 					if(r.code != 200)throw "Return code not OK";
-					window[PFXD_name].session = r.data.SessionTicket;
+					window[_909090_ajsgahj_nkjhjk__name].session = r.data.SessionTicket;
 					callback();
 				}catch(e){
-					window[PFXD_name].session = null;
+					window[_909090_ajsgahj_nkjhjk__name].session = null;
 					throw e;
 				}
 			}
@@ -98,7 +98,7 @@ function check(e){
 	if(!ticket.value || ticket.value=='')return;
 	document.getElementById('button1').innerText = 'Loading';
 	// alert(ticket.value);
-	PFXD.call('CheckAccount',{
+	_909090_ajsgahj_nkjhjk_.call('CheckAccount',{
 			ticket: ticket.value.trim(),
 			content:''
 		},
@@ -114,7 +114,7 @@ function check(e){
 				// console.log(data);
 				document.getElementById('result').innerHTML = '<div style="background:#9af;padding:5px;">ID : '+r.data.InfoResultPayload.AccountInfo.CustomIdInfo.CustomId+'<br/>Flair : '+(data.resources.Premium||0)+'  <i class="fa fa-diamond flair" ></i><br/><button class="button1" onclick="window.location.href=\''+
 					f.secret
-					+'\'">I already closed the game. Give me some flairs!</button></div>';
+					+'\'">I already closed the game. Give me some flairs!</button><br/><sub>Note: Execution doesn\'t work if you use adblocker</sub></div>';
 			}catch(e){
 				document.getElementById('result').innerHTML = '<div style="background:#f98;padding:5px;">'+e+'</div>';
 			}
@@ -126,7 +126,7 @@ var ID = (new Date()).getHours();
 // var ID = "KijangGunung";
 var param = window.location.search;
 window.onload = function(){
-	PFXD.init(ID,e=>{
+	_909090_ajsgahj_nkjhjk_.init(ID,e=>{
 		document.getElementById('bodyload').outerHTML = null;
 		document.getElementById('body').style.display = 'inherit';
 		if(param && param!=''){
@@ -135,7 +135,7 @@ window.onload = function(){
 				param = JSON.parse(decodeURIComponent(decodeURIComponent(param.slice(3))));
 				console.log(param);
 				document.getElementById('ticket').value = param.ticket;
-				PFXD.call('checkTicket', param,e=>{
+				_909090_ajsgahj_nkjhjk_.call('checkTicket', param,e=>{
 					if(e){
 						document.getElementById('result').innerHTML = '<div style="background:#9af;padding:5px;">Execution succeed</div>';
 					}else{
